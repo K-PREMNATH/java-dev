@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Stripe SEPA Debit sample</title>
+    <meta name="description" content="A demo of Stripe Payment Intents" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/accept-payment.js" defer></script>
+</head>
+
+<body>
+<div class="sr-root">
+    <div class="sr-main">
+        <form action="/" method="post" id="payment-form">
+            <div class="form-row inline">
+                <div class="col">
+                    <label for="accountholder-name">
+                        Account name
+                    </label>
+                    <input
+                            id="accountholder-name"
+                            name="accountholder-name"
+                            placeholder="Jenny Rosen"
+                            required
+                    />
+                </div>
+                <div class="col">
+                    <label for="sort-code">
+                        Sort code
+                    </label>
+                    <input
+                            id="sort-code"
+                            name="sort-code"
+                            placeholder="10-20-30"
+                            required
+                    />
+                </div>
+                <div class="col">
+                    <label for="account-number">
+                        Account number
+                    </label>
+                    <input
+                            id="account-number"
+                            name="account-number"
+                            placeholder="00012345"
+                            required
+                    />
+                </div>
+                <div class="col">
+                    <br>
+                    <label>
+                        Billing address
+                    </label><br>
+                    <div class="col">
+                        <label for="billing-street">
+                            Street
+                        </label>
+                        <input
+                                id="billing-street"
+                                name="billing-street"
+                                placeholder=""
+                                required
+                        />
+                    </div>
+                    <div class="col">
+                        <label for="billing-city">
+                            City
+                        </label>
+                        <input
+                                id="billing-city"
+                                name="billing-city"
+                                placeholder=""
+                                required
+                        />
+                    </div>
+                    <div class="col">
+                        <label for="billing-country">
+                            Country
+                        </label>
+                        <input
+                                id="billing-country"
+                                name="billing-country"
+                                placeholder=""
+                                required
+                        />
+                    </div>
+                    <div class="col">
+                        <label for="billing-postalcode">
+                            Postal Code
+                        </label>
+                        <input
+                                id="billing-postalcode"
+                                name="billing-postalcode"
+                                placeholder=""
+                                required
+                        />
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="email">
+                        Email Address
+                    </label>
+                    <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="jenny.rosen@example.com"
+
+                            required
+                    />
+                </div>
+                <div class="col">
+                    <label for="authorized">
+                        Authorized
+                    </label>
+                    <input
+                            type="checkbox"
+                            id="authorized"
+                            name="authorized"
+                            type="authorized"
+                            required
+                    />
+                </div>
+
+            </div>
+            <!--
+                        <div class="form-row">
+
+                            <label for="iban-element">
+                                IBAN
+                            </label>
+                            <div id="iban-element">
+                            </div>
+                        </div>
+                        -->
+            <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
+            <button id="submit-button" >Submit Payment</button>
+
+            <!-- Used to display form errors. -->
+            <div id="error-message" role="alert"></div>
+
+            <!-- Display mandate acceptance text. -->
+            <div id="mandate-acceptance">
+                By providing your Account Number and confirming this payment, you are authorizing
+                Smartzi Pvt Ltd(info@smartzi.com,+44 3300252525). and Stripe, our payment service provider, to send
+                instructions to your bank to debit your account in accordance with those
+                instructions. You are entitled to a refund from your bank under the terms
+                and conditions of your agreement with your bank. A refund must be claimed
+                within eight weeks starting from the date on which your account was debited.
+            </div>
+        </form>
+        <button onclick="SetValue();">Set Value</button>
+    </div>
+</div>
+</body>
+</html>
